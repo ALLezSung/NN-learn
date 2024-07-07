@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-from ..nets import DNN_simple
+from ..nets import simple
 
 #外部参数
 data_path = r'database\MNIST\mnist_test.csv'
@@ -27,7 +27,7 @@ train_data = DATA[:int(train_ratio*len(DATA))]
 test_data = DATA[int(train_ratio*len(DATA)):]
 
 #定义模型
-model = DNN_simple.DNN().to('cuda:0')
+model = simple.DNN().to('cuda:0')
 
 # 定义损失函数和优化器
 loss_fn = nn.MSELoss()
