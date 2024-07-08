@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 
-#定义模型
+# 全连接神经网络
 class DNN(nn.Module):
 
     def __init__(self):
