@@ -1,0 +1,4 @@
+database/MINST_zh/
+database/MNIST/
+.vscode/
+__pycache__/

@@ -18,11 +18,7 @@ def img_to_csv(img_path, csv_path):
         writer.writerow([label] + img_list)
         print(" Done.")
 
-
-if __name__ == "__main__":
-    img_folder_path = r"E:\.app\GitsDepository\.works\neural-network\database\MNIST\imgs"
-    csv_path = r"E:\.app\GitsDepository\.works\neural-network\database\MNIST\test.csv"
-
+def main(img_folder_path, csv_path):
     img_folder = pathlib.Path(img_folder_path)
     
     for entry in img_folder.iterdir():
@@ -30,3 +26,9 @@ if __name__ == "__main__":
             img_to_csv(entry, csv_path)
         elif entry.is_dir():
             pass
+
+if __name__ == "__main__":
+    img_folder_path = r"E:\.app\GitsDepository\.works\neural-network\database\MNIST\imgs"
+    csv_path = r"E:\.app\GitsDepository\.works\neural-network\database\MNIST\test.csv"
+
+    main(img_folder_path, csv_path)
