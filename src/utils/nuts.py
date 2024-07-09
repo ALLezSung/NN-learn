@@ -21,7 +21,7 @@ def show_model(model):
     return None
 
 # 训练模型函数
-def train(model, X, Y, epochs=1000, optimizer=None, 
+def train(model, X, Y, epochs=100, optimizer=None, 
           loss_fn=nn.MSELoss(), losses=None, lr=0.01,
           show_loss_every_n_epochs=0):
     '''

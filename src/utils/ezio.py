@@ -34,14 +34,8 @@ def save_tensor_to_csv(tensor, file_name):
     """
     # 确保Tensor在CPU上
     tensor = tensor.cpu()
-
-    # 将Tensor转换为numpy数组
     numpy_array = tensor.numpy()
-    
-    # 使用pandas创建DataFrame
     df = pd.DataFrame(numpy_array)
-    
-    # 保存DataFrame为CSV文件
     df.to_csv(file_name, index=False)
 
     return None

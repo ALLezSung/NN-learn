@@ -12,14 +12,12 @@ NN-learn/                   # 主目录
 │
 ├── src/                    # 源代码
 │   ├── main.py             # 主程序入口
-│   ├── nets                # 模型定义库
+│   ├── tests               # 测试代码
+│   ├── modules             # 类与模型定义库
 │   └── utils               # 工具函数库
 │       ├── nuts            # 主要函数
+│       ├── ezio            # 文件io函数
 │       └── ...    
-│
-├── tests/                 # 测试代码
-│   └── ...
-│
 │
 ├── requirements.txt       # 项目依赖
 └── README.md              # 项目README文件
