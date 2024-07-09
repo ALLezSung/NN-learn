@@ -1,7 +1,6 @@
 import torch
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 
 import nets.simple as simple
 import utils.nuts as nuts
@@ -30,15 +29,10 @@ model = simple.DNN().to('cuda:0')
 X = train_data[:, :784] # 前 784 列为输入特征
 Y = train_data[:, -10:] # 后 10 列为输出特征
 losses = nuts.train(model, X, Y, epochs=epochs)
-# 绘图
-Fig = plt.figure()
-plt.plot(range(epochs), losses)
-plt.ylabel('loss'), plt.xlabel('epoch')
+nuts.plot_loss(losses) # 绘制损失函数
 
 # 测试网络
 # 给测试集划分输入与输出
 X = test_data[:, :784] # 前 784 列为输入特征
 Y = test_data[:, -10:] # 后 10 列为输出特征
 nuts.test(model, X, Y)
-
-plt.show()

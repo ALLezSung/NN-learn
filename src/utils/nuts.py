@@ -38,7 +38,7 @@ def build_dataset(data, train_ratio=0.8):
 
     return train_data, test_data
 
-# 训练模型
+# 训练模型函数
 def train(model, X, Y, epochs=1000, optimizer=None, 
           loss_fn=nn.MSELoss(), losses=None, lr=0.01,
           show_loss_every_n_epochs=0):
@@ -79,7 +79,24 @@ def train(model, X, Y, epochs=1000, optimizer=None,
 
     return losses
 
-# 测试模型
+# 绘制损失函数变化图
+def plot_loss(losses):
+    '''
+        绘制损失函数变化图
+    Args:
+        losses: list, 记录损失函数的变化
+    Returns:
+        None
+    '''
+    import matplotlib.pyplot as plt
+    Fig = plt.figure()
+    plt.plot(range(len(losses)), losses)
+    plt.ylabel('loss'), plt.xlabel('epoch')
+    plt.show()
+
+    return None
+
+# 测试模型函数
 def test(model, X, Y):
     '''
         测试模型
@@ -99,4 +116,3 @@ def test(model, X, Y):
         print(f'测试集精准度: {100*correct/total} %')
 
     return None
-
