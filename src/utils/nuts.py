@@ -20,24 +20,6 @@ def show_model(model):
 
     return None
 
-# 构建数据集，划分训练集和测试集
-def build_dataset(data, train_ratio=0.8):
-    '''
-        构建数据集，划分训练集和测试集
-    Args:
-        data: torch.Tensor, 待划分的数据集
-        train_ratio: float, 训练集占比
-    Returns:
-        train_data: torch.Tensor, 训练集
-        test_data: torch.Tensor, 测试集
-    '''
-    DATA = data[torch.randperm(len(data))]  #shuffle
-    DATA = DATA.to('cuda:0')
-    train_data = DATA[:int(train_ratio*len(DATA))]
-    test_data = DATA[int(train_ratio*len(DATA)):]
-
-    return train_data, test_data
-
 # 训练模型函数
 def train(model, X, Y, epochs=1000, optimizer=None, 
           loss_fn=nn.MSELoss(), losses=None, lr=0.01,
@@ -105,7 +87,7 @@ def test(model, X, Y):
         X: torch.Tensor, 输入数据
         Y: torch.Tensor, 输出数据
     Returns:
-        None
+        Pred: torch.Tensor, 模型预测的输出
     '''
     with torch.no_grad(): # 该局部关闭梯度计算功能
         Pred = model(X) # 一次前向传播（批量）
@@ -114,5 +96,5 @@ def test(model, X, Y):
         correct = torch.sum( (Pred == Y).all(1) ) # 预测正确的样本
         total = Y.size(0) # 全部的样本数量
         print(f'测试集精准度: {100*correct/total} %')
-
-    return None
+        
+    return Pred

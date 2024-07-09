@@ -1,4 +1,6 @@
-# Neural Network
+# Neural Network Learning
+
+###### ![python](https://badgen.net/badge/python/3.10/blue?icon=github) ![torch](https://badgen.net/badge/torch/2.0.1)  ![license](https://badgen.net/static/license/GPLv3)
 
 ## Introduction
 

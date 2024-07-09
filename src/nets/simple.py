@@ -11,10 +11,11 @@ class DNN(nn.Module):
         '''
         super(DNN,self).__init__()
         self.net = nn.Sequential(       # 按顺序搭建各层
-            nn.Linear(784, 256), nn.ReLU(), # 第 1 层：全连接层
-            nn.Linear(256, 128), nn.ReLU(), # 第 2 层：全连接层
-            nn.Linear(128, 32), nn.ReLU(), # 第 3 层：全连接层
-            nn.Linear(32, 10)               # 第 4 层：全连接层
+            nn.Linear(784, 784), nn.ReLU(), # 第 1 层：全连接层
+            nn.Linear(784, 512), nn.ReLU(), # 第 1 层：全连接层
+            nn.Linear(512, 256), nn.ReLU(), # 第 2 层：全连接层
+            nn.Linear(256, 64), nn.ReLU(),  # 第 3 层：全连接层
+            nn.Linear(64, 10)  # 第 4 层：全连接层
         )
     
     def forward(self, x):

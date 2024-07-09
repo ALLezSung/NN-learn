@@ -4,11 +4,12 @@ import pandas as pd
 
 import nets.simple as simple
 import utils.nuts as nuts
+import utils.ezio as ezio
 
 # 外部参数
 data_path = r'database\MNIST\mnist_test.csv'
 train_ratio = 0.8
-epochs = 1000
+epochs = 500
 
 # 导入数据
 data = pd.read_csv(data_path, header=None).values
@@ -20,7 +21,7 @@ labels = torch.tensor(labels, dtype=torch.float32)
 
 # 构建数据集，划分训练集和测试集
 DATA = torch.cat((imgs, labels), dim=1)
-train_data, test_data = nuts.build_dataset(DATA, train_ratio)
+train_data, test_data = ezio.build_dataset(DATA, train_ratio)
 
 # 定义模型
 model = simple.DNN().to('cuda:0')
@@ -35,4 +36,7 @@ nuts.plot_loss(losses) # 绘制损失函数
 # 给测试集划分输入与输出
 X = test_data[:, :784] # 前 784 列为输入特征
 Y = test_data[:, -10:] # 后 10 列为输出特征
-nuts.test(model, X, Y)
+Pred = nuts.test(model, X, Y)
+
+ezio.save_tensor_to_csv(Y, 'test-data.csv')
+ezio.save_tensor_to_csv(Pred, 'Pred.csv')
