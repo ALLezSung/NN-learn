@@ -12,7 +12,7 @@ NN-learn/                   # 主目录
 │
 ├── src/                    # 源代码
 │   ├── main.py             # 主程序入口
-│   ├── tests               # 测试代码
+│   ├── scripts             # 脚本文件夹
 │   ├── modules             # 类与模型定义库
 │   └── utils               # 工具函数库
 │       ├── nuts            # 主要函数

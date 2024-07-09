@@ -23,7 +23,7 @@ DATA = torch.cat((imgs, labels), dim=1)
 train_data, test_data = ezio.build_dataset(DATA, train_ratio)
 
 # 定义模型
-model = nets.DNN().to('cuda:0')
+model = nets.SFDNN().to('cuda:0')
 
 # 训练模型
 X = train_data[:, :784] # 前 784 列为输入特征
@@ -37,5 +37,5 @@ X = test_data[:, :784] # 前 784 列为输入特征
 Y = test_data[:, -10:] # 后 10 列为输出特征
 Pred = nuts.test(model, X, Y)
 
-ezio.save_tensor_to_csv(Y, 'database/MNIST/test-data.csv')
-ezio.save_tensor_to_csv(Pred, 'database/MNIST/Pred.csv')
+# ezio.save_tensor_to_csv(Y, 'database/MNIST/test-data.csv')
+# ezio.save_tensor_to_csv(Pred, 'database/MNIST/Pred.csv')
