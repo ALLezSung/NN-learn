@@ -17,7 +17,7 @@ class MNIST_DATA(Dataset): # 继承 Dataset 类
         # arr = np.concatenate((imgs, labels), axis=1)
         arr = arr.astype(np.float32) # 转为 float32 类型数组        
         ts = torch.tensor(arr) # 数组转为张量
-        ts = ts.to('cuda') # 把训练集搬到 cuda 上
+        ts = ts.to('cuda:0') # 把训练集搬到 cuda 上
         self.X = ts[ : ,-784 : ]
         self.Y = ts[ : , 0].reshape((-1,1)) 
         self.len = ts.shape[0] # 样本的总数

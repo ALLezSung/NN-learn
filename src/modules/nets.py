@@ -27,6 +27,10 @@ class SFDNN(nn.Module):
 class MNIST_DNN(nn.Module):
 
     def __init__(self):
+        '''
+        针对 MNIST 数据集的神经网络
+        784 -> 512 -> 256 -> 128 -> 64 -> 10
+        '''
         super(MNIST_DNN,self).__init__()
         self.net = nn.Sequential( # 按顺序搭建各层
         # nn.Flatten(), # 把图像铺平成一维
@@ -45,7 +49,6 @@ class MNIST_DNN(nn.Module):
         losses = []
         for epoch in range(epochs):
             for (x, y) in train_loader: # 获取小批次的 x 与 y
-                x, y = x.to('cuda:0'), y.to('cuda:0')
                 Pred = self.forward(x) # 一次前向传播（小批量）
                 y = y.squeeze().long()  # 移除 y 的所有单维度，并确保数据类型为 long
                 loss = self.loss_fn(Pred, y) # 计算损失函数
@@ -62,7 +65,6 @@ class MNIST_DNN(nn.Module):
         total = 0
         with torch.no_grad(): # 该局部关闭梯度计算功能
             for (x, y) in test_loader: # 获取小批次的 x 与 y
-                x, y = x.to('cuda:0'), y.to('cuda:0')
                 Pred = self.forward(x) # 一次前向传播（小批量）
                 _, predicted = torch.max(Pred.data, dim=1)
                 y = y.squeeze()
