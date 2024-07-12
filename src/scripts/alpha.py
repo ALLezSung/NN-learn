@@ -1,3 +1,6 @@
+'''
+最基础的全连接神经网络尝试
+'''
 import torch
 import numpy as np
 import pandas as pd
