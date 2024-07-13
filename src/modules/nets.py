@@ -50,7 +50,7 @@ class MNIST_DNN(nn.Module):
         return y # y 即输出数据   
 
     # 训练方法
-    def train(self, train_loader, epochs=50):
+    def train_process(self, train_loader, epochs=50):
         losses = []
         for epoch in range(epochs):
             for (x, y) in train_loader: # 获取小批次的 x 与 y
@@ -65,7 +65,7 @@ class MNIST_DNN(nn.Module):
         return losses
 
     # 测试方法
-    def test(self, test_loader):
+    def test_process(self, test_loader):
         correct = 0
         total = 0
         with torch.no_grad(): # 该局部关闭梯度计算功能
@@ -79,7 +79,7 @@ class MNIST_DNN(nn.Module):
         
         return result
     
-    def save(self, path):
+    def save_process(self, path):
         torch.save(self.state_dict(), path)
 
 
@@ -98,7 +98,7 @@ class MNIST_zh_CNN(nn.Module):
         S6层：  64 x4  x4
         C7层：  256x1  x1
         F8层：  128
-        Out层： 16
+        Out层： 15
         '''
         super(MNIST_zh_CNN, self).__init__()
         self.net = nn.Sequential(
@@ -111,7 +111,7 @@ class MNIST_zh_CNN(nn.Module):
             nn.Conv2d(64, 256, kernel_size=4), nn.ReLU(), # 第 7 层：卷积层 64x4x4 -> 256x1x1
             nn.Flatten(),
             nn.Linear(256, 128), nn.ReLU(), # 第 8 层：全连接层
-            nn.Linear(128, 16) # 第 9 层：全连接层
+            nn.Linear(128, 15) # 第 9 层：全连接层
         )
         
         self.to('cuda:0')
@@ -124,12 +124,11 @@ class MNIST_zh_CNN(nn.Module):
         return y    
     
     # 训练方法
-    def train(self, train_loader, epochs=50):
+    def train_process(self, train_loader, epochs=50):
         losses = []
         for epoch in range(epochs):
             for (x, y) in train_loader:
                 Pred = self.forward(x)
-                # y = y.squeeze().long()
                 loss = self.loss_fn(Pred, y)
                 losses.append(loss.item())
                 self.optimizer.zero_grad()
@@ -138,19 +137,18 @@ class MNIST_zh_CNN(nn.Module):
         return losses
     
     # 测试方法
-    def test(self, test_loader):
+    def test_procss(self, test_loader):
         correct = 0
         total = 0
         with torch.no_grad():
             for (x, y) in test_loader:
                 Pred = self.forward(x)
                 _, predicted = torch.max(Pred.data, dim=1)
-                # y = y.squeeze()
                 correct += torch.sum( (predicted == y) )
                 total += y.size(0)
         result = f'测试集精准度: {100*correct/total} %'
         return result
     
-    def save(self, path):
+    def save_process(self, path):
         torch.save(self.state_dict(), path)
 

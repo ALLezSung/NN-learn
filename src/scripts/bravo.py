@@ -27,10 +27,10 @@ test_loader = DataLoader(dataset=test_data, shuffle=False, batch_size=test_size)
 model = nets.MNIST_DNN()
 
 # 训练 及 测试
-losses = model.train(train_loader, epochs=epochs)
-_ = model.test(test_loader)
+losses = model.train_process(train_loader, epochs=epochs)
+_ = model.test_process(test_loader)
 print(_)
 nuts.plot_loss(losses)
 
 # 保存模型
-model.save(r'models\MNIST_DNN.pth')
+model.save_process(r'models\MNIST_DNN.pth')

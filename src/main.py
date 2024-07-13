@@ -1,3 +1,6 @@
+'''
+使用MNIST_zh数据集训练一个CNN模型
+'''
 from torch.utils.data import DataLoader
 from torch.utils.data import random_split
 
@@ -25,10 +28,10 @@ test_loader = DataLoader(dataset=test_data, shuffle=False, batch_size=test_size)
 model = nets.MNIST_zh_CNN()
 
 # 训练 及 测试
-losses = model.train(train_loader, epochs=epochs)
-_ = model.test(test_loader)
+losses = model.train_process(train_loader, epochs=epochs)
+_ = model.test_procss(test_loader)
 print(_)
 nuts.plot_loss(losses)
 
 # 保存模型
-model.save(r'models\MNIST_zh_DNN.pth')
+model.save_process(r'models\MNIST_zh_DNN.pth')

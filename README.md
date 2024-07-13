@@ -4,7 +4,7 @@
 
 ## Introduction
 
- This personal repo was established by a beginner in **neural networks** to learn knowledge about artificial intelligence. The main parts of repo are projects for self-learning and code bases.
+ This personal repo was established by a beginner in **neural networks** to learn knowledge about artificial intelligence. The main parts of repo are code bases and projects for self-learning.
 
 ## Project Structure
 

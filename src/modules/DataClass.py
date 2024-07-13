@@ -44,14 +44,14 @@ class MNIST_zh_DATA(Dataset):
         import torchvision.transforms as transforms
         import PIL.Image as Image
         transform = transforms.Compose([
-            transforms.Resize((64, 64)),  # 所有图像调整为28x28大小
+            transforms.Resize((64, 64)),  # 所有图像调整为 64x64
             transforms.ToTensor(),  # 将图像转换为Tensor
         ])
         for img_path in pl.Path(self.path).iterdir():
             try:
                 image = Image.open(img_path)
                 image = transform(image)  # 应用转换
-                label = int(img_path.stem.split('_')[-1])
+                label = int(img_path.stem.split('_')[-1]) - 1
                 self.X.append(image)
                 self.Y.append(label)
             except Exception as e:

@@ -31,14 +31,14 @@ model = nets.SFDNN().to('cuda:0')
 # 训练模型
 X = train_data[:, :784] # 前 784 列为输入特征
 Y = train_data[:, -10:] # 后 10 列为输出特征
-losses = nuts.train(model, X, Y, epochs=epochs)
+losses = nuts.train_process(model, X, Y, epochs=epochs)
 nuts.plot_loss(losses) # 绘制损失函数
 
 # 测试网络
 # 给测试集划分输入与输出
 X = test_data[:, :784] # 前 784 列为输入特征
 Y = test_data[:, -10:] # 后 10 列为输出特征
-Pred = nuts.test(model, X, Y)
+Pred = nuts.test_process(model, X, Y)
 
 # ezio.save_tensor_to_csv(Y, 'database/MNIST/test-data.csv')
 # ezio.save_tensor_to_csv(Pred, 'database/MNIST/Pred.csv')
