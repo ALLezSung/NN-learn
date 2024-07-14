@@ -152,3 +152,4 @@ class MNIST_zh_CNN(nn.Module):
     def save_process(self, path):
         torch.save(self.state_dict(), path)
 
+class 

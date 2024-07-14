@@ -47,7 +47,7 @@ def output(prediction):
 def main():
     # Load the model
     model = nets.MNIST_zh_CNN()
-    model.load_state_dict(torch.load(r"models\MNIST_zh_DNN.pth"))
+    model.load_state_dict(torch.load(r"models\MNIST_zh_DNN_best.pth"))
     # Load the image
     image = preprocess_image(r"predict\board.png")
 
